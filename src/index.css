@@ -1,8 +1,13 @@
 :root {
-  --color-lightest: #fff4e6;
-  --color-light: #ffe8cc;
-  --color-medium: #ffa94d;
-  --color-dark: #ff922b;
+  /*Colors*/
+
+  /*Primary*/
+  --Desaturated-Dark-Cyan: hsl(180, 29%, 50%);
+
+  /*Neutral*/
+  --Light-Grayish-Cyan: hsl(180, 52%, 96%); /*background & filter Tablets*/
+  --Dark-Grayish-Cyan: hsl(180, 8%, 52%);
+  --Very-Dark-Grayish-Cyan: hsl(180, 14%, 20%);
 }
 
 * {
@@ -16,11 +21,184 @@ html {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-
 body {
   color: #495057;
+  background-color: var(--Light-Grayish-Cyan);
+  font-family: "League Spartan", sans-serif;
+}
+.header {
+  background-color: var(--Desaturated-Dark-Cyan);
+  height: 13vh;
+  background-image: url("./images/bg-header-desktop.svg");
+}
+
+.jobs_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 65px;
+}
+
+.description {
+  width: 60%;
+  padding: 25px;
+  display: flex;
+  background-color: white;
+  justify-content: space-between;
+  gap: 50px;
+  border-radius: 5px;
+  box-shadow: 1px 4px 5px var(--Dark-Grayish-Cyan);
+  position: relative;
+}
+.description:first-child {
+  margin-top: 45px;
+}
+.tags {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-basis: 35%;
+  flex-grow: 0;
+  gap: 5px;
+}
+.tags li {
+  background-color: var(--Light-Grayish-Cyan);
+  color: var(--Desaturated-Dark-Cyan);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px;
+}
+
+.main {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.company_image {
+  display: inline-block;
+}
+
+.detail_group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(131, 131, 131);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.date {
+  list-style: none;
+}
+
+.company {
+  color: var(--Desaturated-Dark-Cyan);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.new {
+  padding: 6px 6px 4px 6px;
+  background-color: var(--Desaturated-Dark-Cyan);
+  color: white;
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  position: absolute;
+  top: 30px;
+  left: 190px;
+}
+
+.featured {
+  padding: 6px 6px 4px 6px;
+  background-color: #000;
+  color: white;
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  position: absolute;
+  top: 30px;
+  left: 240px;
+}
+
+.job_title {
+  font-size: 18px;
+}
+
+.filter {
+  width: 60%;
+  padding: 25px;
+  display: flex;
+  background-color: white;
+  justify-content: space-between;
+  gap: 50px;
+  border-radius: 5px;
+  box-shadow: 1px 4px 5px var(--Dark-Grayish-Cyan);
+  position: absolute;
+  top: 8%;
+}
+
+.filterby_list {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.filterby {
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: yellowgreen;
+}
+
+.btn {
+  background-color: var(--Desaturated-Dark-Cyan);
+  color: white;
+  border: 1px solid var(--Desaturated-Dark-Cyan);
+  border-radius: 0 5px 5px 0;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.btn:hover {
+  background-color: var(--Very-Dark-Grayish-Cyan);
+  cursor: pointer;
+  border: 1px solid var(--Very-Dark-Grayish-Cyan);
+}
+
+.filter_item_name {
+  background-color: var(--Light-Grayish-Cyan);
+  color: var(--Desaturated-Dark-Cyan);
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px 0 0 5px;
+  align-self: stretch;
+  display: flex; /* Create a nested flex container */
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  padding: 0 10px;
+}
+
+.btn-clear {
+  background: none;
+  border: none;
+  color: var(--Desaturated-Dark-Cyan);
+  padding: 5px 10px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.btn-clear:hover {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 600;
 }
