@@ -50,7 +50,6 @@ body {
   gap: 50px;
   border-radius: 5px;
   box-shadow: 1px 4px 5px var(--Dark-Grayish-Cyan);
-  position: relative;
 }
 .description:first-child {
   margin-top: 45px;
@@ -70,6 +69,27 @@ body {
   font-size: 15px;
   font-weight: 600;
   padding: 10px;
+}
+
+.btn-tag {
+  background-color: var(--Light-Grayish-Cyan);
+  color: var(--Desaturated-Dark-Cyan);
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+.btn-tag:hover,
+.btn-tag:focus {
+  background-color: var(--Desaturated-Dark-Cyan);
+  color: #fff;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 800;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
 }
 
 .main {
@@ -93,12 +113,17 @@ body {
   color: rgb(131, 131, 131);
   font-size: 15px;
   font-weight: 500;
+  gap: 25px;
 }
 
 .date {
   list-style: none;
 }
-
+.company-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 .company {
   color: var(--Desaturated-Dark-Cyan);
   font-size: 14px;
@@ -112,9 +137,9 @@ body {
   border-radius: 14px;
   font-size: 12px;
   font-weight: 600;
-  position: absolute;
-  top: 30px;
-  left: 190px;
+  left: calc(100% - 145px); /* Subtract the width of the "NEW!" label */
+  top: -5px;
+  z-index: 100;
 }
 
 .featured {
@@ -124,13 +149,16 @@ body {
   border-radius: 14px;
   font-size: 12px;
   font-weight: 600;
-  position: absolute;
-  top: 30px;
-  left: 240px;
+  top: -5px;
+  right: 0;
 }
 
 .job_title {
   font-size: 18px;
+}
+.job_title:hover {
+  color: var(--Desaturated-Dark-Cyan);
+  cursor: pointer;
 }
 
 .filter {

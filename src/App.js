@@ -1,4 +1,5 @@
 import "./index.css";
+import data from "./data.json";
 import { ReactComponent as Logo } from "./images/insure.svg";
 export default function App() {
   return (
@@ -35,43 +36,48 @@ function JobsList() {
   return (
     <div className="jobs_container">
       <Filter />
-      <Job />
-      <Job />
-      <Job />
-      <Job />
-      <Job />
-      <Job />
-      <Job />
-      <Job />
-      <Job />
+      {data.map((job) => (
+        <Job key={job.id} job={job} />
+      ))}
     </div>
   );
 }
 
-function Job() {
+function Job({ job }) {
+  const tags = [
+    job.role,
+    job.level,
+    ...(job.languages ?? []).flat(),
+    ...(job.tools ?? []).flat(),
+  ].flatMap((tag) => tag);
   return (
     <>
       <div className="description">
         <div className="main">
           <Logo />
+
           <div className="detail_group">
-            <span className="new">NEW!</span>
-            <span className="featured">FEATURED</span>
-            <h5 className="company">Account</h5>
-            <h3 className="job_title"> Junior Frontend Developer</h3>
+            <div className="company-wrapper">
+              <h5 className="company">{job.company}</h5>
+              {job.new && <span className="new">NEW!</span>}
+              {job.featured && <span className="featured">FEATURED</span>}
+            </div>
+
+            <h3 className="job_title">{job.position}</h3>
             <ul className="details">
-              <li className="date">1d ago</li>
-              <li className="contract_type">Part Time</li>
-              <li className="place">USA only</li>
+              <li className="date">{job.postedAt}</li>
+              <li className="contract_type">{job.contract}</li>
+              <li className="place">{job.location}</li>
             </ul>
           </div>
         </div>
 
         <ul className="tags">
-          <li>Frontend</li>
-          <li>React</li>
-          <li>Junior</li>
-          <li>JavaScript</li>
+          {tags.map((tag) => (
+            <button className="btn-tag" key={tag}>
+              {tag}
+            </button>
+          ))}
         </ul>
       </div>
     </>
