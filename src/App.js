@@ -1,6 +1,7 @@
 import "./index.css";
 import data from "./data.json";
 import { ReactComponent as Logo } from "./images/insure.svg";
+import { useState, useEffect } from "react";
 export default function App() {
   return (
     <div className="container">
@@ -14,36 +15,76 @@ function Header() {
   return <header className="header"></header>;
 }
 
-function Filter() {
+function Filter({ filterList, setFilterList, setFilterVisible }) {
+  const handleRemoveFilter = (filter) => {
+    setFilterList((prevFilterList) =>
+      prevFilterList.filter((element) => element !== filter)
+    );
+  };
+  useEffect(() => {
+    setFilterVisible(filterList.length > 0 ? true : false);
+  }, [filterList, setFilterVisible]);
+
   return (
     <div className="filter">
       <div className="filterby_list">
-        <div className="filterby">
-          <span className="filter_item_name">Javascript</span>
-          <button className="btn">X</button>
-        </div>
-        <div className="filterby">
-          <span className="filter_item_name">Javascript</span>
-          <button className="btn">X</button>
-        </div>
+        {filterList.map((filter) => (
+          <div key={filter} className="filterby">
+            <span className="filter_item_name">{filter}</span>
+            <button onClick={() => handleRemoveFilter(filter)} className="btn">
+              X
+            </button>
+          </div>
+        ))}
       </div>
 
-      <button className="btn-clear">Clear</button>
+      <button
+        className="btn-clear"
+        onClick={() => {
+          setFilterList([]);
+          setFilterVisible(false);
+        }}
+      >
+        Clear
+      </button>
     </div>
   );
 }
 function JobsList() {
+  const [isFilterVisible, setFilterVisible] = useState(false);
+  const [filterList, setFilterList] = useState([]);
   return (
-    <div className="jobs_container">
-      <Filter />
+    <div
+      className="jobs_container"
+      style={{ marginTop: isFilterVisible ? 65 : 0 }}
+    >
+      {isFilterVisible ? (
+        <Filter
+          filterList={filterList}
+          setFilterList={setFilterList}
+          setFilterVisible={setFilterVisible}
+        />
+      ) : undefined}
       {data.map((job) => (
-        <Job key={job.id} job={job} />
+        <Job
+          key={job.id}
+          job={job}
+          filterList={filterList}
+          setFilterList={setFilterList}
+          setFilterVisible={setFilterVisible}
+        />
       ))}
     </div>
   );
 }
 
-function Job({ job }) {
+function Job({ job, filterList, setFilterList, setFilterVisible }) {
+  const handleTagClick = (tag) => {
+    if (!filterList.includes(tag)) {
+      setFilterList((prevFilterList) => [...prevFilterList, tag]);
+      setFilterVisible(true);
+    }
+  };
   const tags = [
     job.role,
     job.level,
@@ -74,7 +115,11 @@ function Job({ job }) {
 
         <ul className="tags">
           {tags.map((tag) => (
-            <button className="btn-tag" key={tag}>
+            <button
+              onClick={() => handleTagClick(tag)}
+              className="btn-tag"
+              key={tag}
+            >
               {tag}
             </button>
           ))}
