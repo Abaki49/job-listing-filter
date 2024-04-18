@@ -58,9 +58,9 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  flex-basis: 35%;
   flex-grow: 0;
   gap: 5px;
+  flex-wrap: wrap;
 }
 .tags li {
   background-color: var(--Light-Grayish-Cyan);
@@ -98,6 +98,7 @@ body {
 }
 .company_image {
   display: inline-block;
+  flex-shrink: 0;
 }
 
 .detail_group {
@@ -125,7 +126,7 @@ body {
 }
 .company {
   color: var(--Desaturated-Dark-Cyan);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
 }
 
